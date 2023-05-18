@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "36405337404",
+    "project_id": "sameinfarm",
+    "storage_bucket": "sameinfarm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36405337404:android:43bc555efb1fdf508e5239",
+        "android_client_info": {
+          "package_name": "com.example.sameinfarm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "36405337404-1jf7c4chmdrucuc5bsu1h8nsv1tpvgv7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkBytczrYSy-er3w9zM1HsnaFv243rL5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "36405337404-1jf7c4chmdrucuc5bsu1h8nsv1tpvgv7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

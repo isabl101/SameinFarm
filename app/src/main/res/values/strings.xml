@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">sameinFARM</string>
+    <string name="firebase_auth_version" />
+</resources>
