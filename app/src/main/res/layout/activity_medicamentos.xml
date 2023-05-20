@@ -11,7 +11,6 @@
         android:layout_width="412dp"
         android:layout_height="63dp"
         android:layout_marginBottom="672dp"
-        android:background="@color/gris"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +34,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Tus Medicamentos"
-            android:textColor="@color/blanco"
+            android:textColor="@color/gris"
             android:textSize="25dp" />
     </LinearLayout>
 
@@ -171,14 +170,14 @@
                     app:tint="#1C1C1C" />
 
                 <ImageButton
-                    android:id="@+id/btn_form"
+                    android:id="@+id/btn_buscar"
                     android:layout_width="60dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:background="@color/gris"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
-                    app:srcCompat="?attr/actionModePasteDrawable"
+                    app:srcCompat="?android:attr/actionModeWebSearchDrawable"
                     app:tint="#FFFFFF" />
             </LinearLayout>
 

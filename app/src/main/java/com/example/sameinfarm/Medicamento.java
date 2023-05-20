@@ -73,13 +73,10 @@ public class Medicamento implements Serializable {
 
     @Override
     public String toString() {
-        return "Medicamento{" +
-                ", nombre='" + nombre + '\'' +
-                ", dosis='" + dosis + '\'' +
-                ", mg='" + mg + '\'' +
-                ", mes='" + mes + '\'' +
-                ", cantidad='" + cantidad + '\'' +
-                '}';
+        return "\nMEDICAMENTO\n" +
+                "\nNOMBRE: " + nombre +
+                "\nMG: " + mg + "\n\n"
+                ;
     }
 }
 
