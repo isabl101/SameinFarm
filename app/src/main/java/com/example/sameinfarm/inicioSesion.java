@@ -47,8 +47,8 @@ public class inicioSesion extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     // El inicio de sesión fue exitoso, redirigir al usuario a la pantalla principal
-                    Intent i = new Intent(inicioSesion.this, MainActivity.class);
-                    startActivity(i);
+                    Intent intmedicamentos=new Intent(inicioSesion.this, medicamentos.class);
+                    startActivity(intmedicamentos);
                     Toast.makeText(inicioSesion.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
                 } else {
                     // Error en el inicio de sesión, mostrar mensaje de error

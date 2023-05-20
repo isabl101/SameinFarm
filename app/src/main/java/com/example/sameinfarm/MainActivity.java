@@ -23,4 +23,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intinicioSesion=new Intent(this,inicioSesion.class);
         startActivity(intinicioSesion);
     }
+
+
 }
