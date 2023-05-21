@@ -11,6 +11,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 public class medicamentos extends AppCompatActivity {
     EditText codMedicina, nombreMedicina, dosisMedicina, mgMedicina, mesMedicina, cantidadMedicina;
     ImageButton btn_delete, btn_update, btn_plus, btn_buscar;
-    Button btn_form, btn_chat;
+    Button btn_form;
     ListView lvDatos;
     DatabaseReference mDatabase;
 
@@ -40,6 +41,9 @@ public class medicamentos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicamentos);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
 
         codMedicina = findViewById(R.id.codMedicina);
         nombreMedicina = findViewById(R.id.nombreMedicina);
@@ -52,7 +56,6 @@ public class medicamentos extends AppCompatActivity {
         btn_plus = findViewById(R.id.btn_plus);
         btn_buscar = findViewById(R.id.btn_buscar);
         btn_form = findViewById(R.id.btn_form);
-        btn_chat = findViewById(R.id.btn_chat);
         lvDatos = findViewById(R.id.lvDatos);
 
 
@@ -63,7 +66,6 @@ public class medicamentos extends AppCompatActivity {
         listarMedicamento();
         generarFormula();
         solFormula();
-        contact();
     } //cierre Oncreate
 
 
@@ -475,15 +477,6 @@ public class medicamentos extends AppCompatActivity {
         });
     } //cierre solicitar
 
-    public void contact() {
-        btn_chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intcontact = new Intent(medicamentos.this, emergencia.class);
-                startActivity(intcontact);
-            }
-        });
-    }
 
 }//Cierra la clase
 
