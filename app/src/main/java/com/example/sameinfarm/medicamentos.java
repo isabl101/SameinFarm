@@ -10,9 +10,11 @@ import com.google.firebase.database.ValueEventListener;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,7 @@ import java.util.List;
 public class medicamentos extends AppCompatActivity {
     EditText codMedicina, nombreMedicina, dosisMedicina, mgMedicina, mesMedicina, cantidadMedicina;
     ImageButton btn_delete, btn_update, btn_plus, btn_buscar;
+    Button btn_form;
     ListView lvDatos;
     DatabaseReference mDatabase;
 
@@ -51,6 +54,7 @@ public class medicamentos extends AppCompatActivity {
         btn_update = findViewById(R.id.btn_update);
         btn_plus = findViewById(R.id.btn_plus);
         btn_buscar = findViewById(R.id.btn_buscar);
+        btn_form = findViewById(R.id.btn_form);
         lvDatos = findViewById(R.id.lvDatos);
 
 
@@ -59,6 +63,8 @@ public class medicamentos extends AppCompatActivity {
         eliminar();
         buscar();
         listarMedicamento();
+        generarFormula();
+        solFormula();
     } //cierre Oncreate
 
 
@@ -238,51 +244,51 @@ public class medicamentos extends AppCompatActivity {
                 }
                 else
                 {
-                 codMedicina.getText().toString();
-                 FirebaseDatabase db = FirebaseDatabase.getInstance();
-                 DatabaseReference dbref = db.getReference(Medicamento.class.getSimpleName());
+                    codMedicina.getText().toString();
+                    FirebaseDatabase db = FirebaseDatabase.getInstance();
+                    DatabaseReference dbref = db.getReference(Medicamento.class.getSimpleName());
 
-                 dbref.addListenerForSingleValueEvent(new ValueEventListener() {
-                     @Override
-                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                         final boolean[] res = {false};
-                         for(DataSnapshot x : snapshot.getChildren()){
-                             if (codMedicina.getText().toString().equals(x.child("cod").getValue().toString())) {
+                    dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            final boolean[] res = {false};
+                            for(DataSnapshot x : snapshot.getChildren()){
+                                if (codMedicina.getText().toString().equals(x.child("cod").getValue().toString())) {
 
-                                 AlertDialog.Builder a = new AlertDialog.Builder(medicamentos.this);
-                                 a.setCancelable(false);
-                                 a.setTitle("Confirma");
-                                 a.setMessage("¿Está seguro de eliminar el medicamento del registro?");
-                                 a.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                                     @Override
-                                     public void onClick(DialogInterface dialogInterface, int i) {
+                                    AlertDialog.Builder a = new AlertDialog.Builder(medicamentos.this);
+                                    a.setCancelable(false);
+                                    a.setTitle("Confirma");
+                                    a.setMessage("¿Está seguro de eliminar el medicamento del registro?");
+                                    a.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
 
-                                     }
-                                 });
-                                 a.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                     @Override
-                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                         res[0] = true;
-                                         ocultarTeclado();
-                                         x.getRef().removeValue();
-                                         listarMedicamento();
-                                     }
-                                 });
-                                 a.show();
-                                 break;
-                             }
-                         }
-                         if (res[0] == false){
-                             ocultarTeclado();
-                             Toast.makeText(medicamentos.this, "Medicamento no encontrado", Toast.LENGTH_SHORT).show();
-                         }
-                     }
+                                        }
+                                    });
+                                    a.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            res[0] = true;
+                                            ocultarTeclado();
+                                            x.getRef().removeValue();
+                                            listarMedicamento();
+                                        }
+                                    });
+                                    a.show();
+                                    break;
+                                }
+                            }
+                            if (res[0] == false){
+                                ocultarTeclado();
+                                Toast.makeText(medicamentos.this, "Medicamento no encontrado", Toast.LENGTH_SHORT).show();
+                            }
+                        }
 
-                     @Override
-                     public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                     }
-                 });
+                        }
+                    });
                 }
             }
         });
@@ -358,6 +364,117 @@ public class medicamentos extends AppCompatActivity {
         cantidadMedicina.setText("");
     }
 
+    private void generarFormula() {
+        btn_form.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (codMedicina.getText().toString().trim().isEmpty()) {
+                    ocultarTeclado();
+                    Toast.makeText(medicamentos.this, "Ingrese el código del medicamento para generar la fórmula", Toast.LENGTH_SHORT).show();
+                } else {
+                    String cod = codMedicina.getText().toString();
+
+                    FirebaseDatabase db = FirebaseDatabase.getInstance();
+                    DatabaseReference dbref = db.getReference("Medicamento");
+
+                    dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            boolean res = false;
+                            for (DataSnapshot x : snapshot.getChildren()) {
+                                if (x.child("cod").getValue().toString().equals(cod)) {
+                                    res = true;
+                                    String nombre = x.child("nombre").getValue().toString();
+                                    String dosis = x.child("dosis").getValue().toString();
+                                    String mg = x.child("mg").getValue().toString();
+                                    String mes = x.child("mes").getValue().toString();
+
+                                    String formula = "Receta Médica" + "\n\n" +
+                                            "Medicamento: " + nombre + "\n" +
+                                            "Dosis: " + dosis + "\n" +
+                                            "Mg: " + mg + "\n" +
+                                            "Mes: " + mes + "\n";
+
+                                    ocultarTeclado();
+                                    Toast.makeText(medicamentos.this, "Fórmula generada", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(Intent.ACTION_SEND);
+                                    intent.setType("text/plain");
+                                    intent.putExtra(Intent.EXTRA_TEXT, formula);
+                                    startActivity(Intent.createChooser(intent, "Compartir fórmula"));
+                                    break;
+                                }
+                            }
+                            if (!res) {
+                                ocultarTeclado();
+                                Toast.makeText(medicamentos.this, "El medicamento que intentas generar la fórmula no existe", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(medicamentos.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+    } //cierre generar formula
+
+    private void solFormula() {
+        btn_form.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (codMedicina.getText().toString().trim().isEmpty()) {
+                    ocultarTeclado();
+                    Toast.makeText(medicamentos.this, "Ingrese el código del medicamento para generar la fórmula", Toast.LENGTH_SHORT).show();
+                } else {
+                    String cod = codMedicina.getText().toString();
+
+                    FirebaseDatabase db = FirebaseDatabase.getInstance();
+                    DatabaseReference dbref = db.getReference("Medicamento");
+
+                    dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            boolean res = false;
+                            for (DataSnapshot x : snapshot.getChildren()) {
+                                if (x.child("cod").getValue().toString().equals(cod)) {
+                                    res = true;
+                                    String nombre = x.child("nombre").getValue().toString();
+                                    String dosis = x.child("dosis").getValue().toString();
+                                    String mg = x.child("mg").getValue().toString();
+                                    String mes = x.child("mes").getValue().toString();
+
+                                    String formula = "Receta Médica" + "\n\n" +
+                                            "Medicamento: " + nombre + "\n" +
+                                            "Dosis: " + dosis + "\n" +
+                                            "Mg: " + mg + "\n" +
+                                            "Mes: " + mes + "\n";
+
+                                    ocultarTeclado();
+                                    Toast.makeText(medicamentos.this, "Fórmula generada", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(Intent.ACTION_SEND);
+                                    intent.setType("text/plain");
+                                    intent.putExtra(Intent.EXTRA_TEXT, formula);
+                                    startActivity(Intent.createChooser(intent, "Compartir fórmula"));
+                                    break;
+                                }
+                            }
+                            if (!res) {
+                                ocultarTeclado();
+                                Toast.makeText(medicamentos.this, "El medicamento que intentas generar la fórmula no existe", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(medicamentos.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+    } //cierre solicitar
 
 
 }//Cierra la clase

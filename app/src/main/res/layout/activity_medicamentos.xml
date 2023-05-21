@@ -19,9 +19,8 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="4dp"
+            android:layout_width="2dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono" />
 
@@ -211,6 +210,32 @@
         <ListView
             android:id="@+id/lvDatos"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="269dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_form"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Formula Electrónica"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:backgroundTint="@color/gris"/>
+
+            <Button
+                android:id="@+id/btn_chat"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="5dp"
+                android:text="Chat de ayuda o informacion"
+                android:backgroundTint="@color/azul"/>
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

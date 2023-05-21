@@ -12,6 +12,9 @@
         android:theme="@style/Theme.SameinFARM"
         tools:targetApi="31">
         <activity
+            android:name=".formula"
+            android:exported="false" />
+        <activity
             android:name=".medicamentos"
             android:exported="false" />
         <activity
