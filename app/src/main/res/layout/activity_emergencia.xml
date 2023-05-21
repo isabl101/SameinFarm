@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".emergencia"
+    android:background="@drawable/sos">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout10"
+        android:layout_width="158dp"
+        android:layout_height="533dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="234dp"
+        android:layout_marginBottom="91dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.417">
+
+        <TextView
+            android:id="@+id/l"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Comunicate con nosotros"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/citas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Reservación de citas: citasamein@gmail.com"
+            android:textColor="@color/gris"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/telefonos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Linea de atención para emergencias:             +57 444 57 06"
+            android:textColor="@color/gris"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/whatsapp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="WhatsAPP:                  +57 312 720 64 20"
+            android:textColor="@color/gris"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Por favor, no dudes en ponerte en contacto con nosotros para cualquier tipo de emergencia"
+            android:textColor="@color/azul"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="331dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
+
+        <Button
+            android:id="@+id/btn_consejos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Consejos y/o sugerencias"
+            android:backgroundTint="@color/gris"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

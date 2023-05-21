@@ -234,7 +234,7 @@
                 android:layout_weight="1"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="5dp"
-                android:text="Chat de ayuda o informacion"
+                android:text="opciones de ayuda o informacion"
                 android:backgroundTint="@color/azul"/>
         </LinearLayout>
     </LinearLayout>

@@ -7,7 +7,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,12 +28,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class medicamentos extends AppCompatActivity {
     EditText codMedicina, nombreMedicina, dosisMedicina, mgMedicina, mesMedicina, cantidadMedicina;
     ImageButton btn_delete, btn_update, btn_plus, btn_buscar;
-    Button btn_form;
+    Button btn_form, btn_chat;
     ListView lvDatos;
     DatabaseReference mDatabase;
 
@@ -55,6 +52,7 @@ public class medicamentos extends AppCompatActivity {
         btn_plus = findViewById(R.id.btn_plus);
         btn_buscar = findViewById(R.id.btn_buscar);
         btn_form = findViewById(R.id.btn_form);
+        btn_chat = findViewById(R.id.btn_chat);
         lvDatos = findViewById(R.id.lvDatos);
 
 
@@ -65,6 +63,7 @@ public class medicamentos extends AppCompatActivity {
         listarMedicamento();
         generarFormula();
         solFormula();
+        contact();
     } //cierre Oncreate
 
 
@@ -476,6 +475,15 @@ public class medicamentos extends AppCompatActivity {
         });
     } //cierre solicitar
 
+    public void contact() {
+        btn_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intcontact = new Intent(medicamentos.this, emergencia.class);
+                startActivity(intcontact);
+            }
+        });
+    }
 
 }//Cierra la clase
 
